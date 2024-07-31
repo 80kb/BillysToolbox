@@ -1,4 +1,4 @@
-#  <img src="https://github.com/80kb/BillysToolbox/blob/master/gh-assets/bobomb.png" width="32" height="32"> BillysToolbox
+#  <img src="https://github.com/80kb/BillysToolbox/blob/master/gh-assets/bobomb.png" width="32" height="32"> Billy's Toolbox
 Wii file editor inspired by [Wexos's Toolbox](https://wiki.tockdom.com/wiki/Wexos%27s_Toolbox). Uses MDI windows to edit various wii file types.
 
 <img src="https://github.com/80kb/BillysToolbox/blob/master/gh-assets/example.png">
