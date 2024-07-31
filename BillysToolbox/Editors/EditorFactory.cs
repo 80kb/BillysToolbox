@@ -29,7 +29,7 @@ namespace BillysToolbox.Editors
                     return new BMMEditorForm(bmm, parentInstance);
                 case ".kmp":
                     KMP kmp = new KMP(buffer, fileName);
-                    return new KMPEditorForm(kmp);
+                    return new KMPEditorForm(kmp, parentInstance);
                 default:
                     return null;
             }
