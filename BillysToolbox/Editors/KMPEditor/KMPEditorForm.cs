@@ -5,10 +5,11 @@ using System.Text;
 
 namespace BillysToolbox.Editors
 {
-    public partial class KMPEditorForm : Form
+    public partial class KMPEditorForm : Form, IEditor
     {
         private KMP? FileInstance;
         private Node? SelectedNode;
+        private U8? ParentInstance;
         private bool UnsavedChanges;
 
         public KMPEditorForm(KMP kmp)
@@ -23,7 +24,55 @@ namespace BillysToolbox.Editors
             PopulateUI();
         }
 
+        public KMPEditorForm(KMP kmp, U8? parentInstance)
+        {
+            UnsavedChanges = false;
+            FileInstance = kmp;
+            ParentInstance = parentInstance;
+
+            InitializeComponent();
+            InitializeUI();
+
+            InitNodes();
+            PopulateUI();
+        }
+
         // Helper functions
+
+        public void SaveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = Path.GetFileNameWithoutExtension(FileInstance.Filename);
+            sfd.Filter = "BMM Files (*.bmm)|*.bmm";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                byte[] buffer = FileInstance.Write();
+                File.WriteAllBytes(sfd.FileName, buffer);
+            }
+        }
+
+        public void Save()
+        {
+            if (ParentInstance != null)
+            {
+                int index = ParentInstance.FindIndexFromName(FileInstance.Filename);
+                if (index > 0)
+                {
+                    ParentInstance.Nodes[index].Data = FileInstance.Write();
+                }
+            }
+            else if (!File.Exists(FileInstance.Filename))
+            {
+                SaveAs();
+                return;
+            }
+            else
+            {
+                byte[] buffer = FileInstance.Write();
+                File.WriteAllBytes(FileInstance.Filename, buffer);
+            }
+        }
 
         private void InitNodes()
         {

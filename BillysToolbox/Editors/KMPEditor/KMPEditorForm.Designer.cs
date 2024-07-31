@@ -41,12 +41,6 @@
             TreeNode treeNode11 = new TreeNode("Battle Endpoints");
             TreeNode treeNode12 = new TreeNode("Stage Info");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KMPEditorForm));
-            menuStrip1 = new MenuStrip();
-            fileMenuItem = new ToolStripMenuItem();
-            newMenuItem = new ToolStripMenuItem();
-            openMenuItem = new ToolStripMenuItem();
-            saveMenuItem = new ToolStripMenuItem();
-            saveAsMenuItem = new ToolStripMenuItem();
             sectionTree = new TreeView();
             entryListBox = new ListBox();
             entryPropertyGrid = new PropertyGrid();
@@ -56,63 +50,24 @@
             propertyGroupBox = new GroupBox();
             viewport = new Viewport2D();
             sectionGroupBox = new GroupBox();
-            menuStrip1.SuspendLayout();
+            splitContainer1 = new SplitContainer();
+            splitContainer2 = new SplitContainer();
             entryGroupBox.SuspendLayout();
             propertyGroupBox.SuspendLayout();
             sectionGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
             SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.BackColor = Color.Transparent;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1113, 24);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
-            // 
-            // fileMenuItem
-            // 
-            fileMenuItem.DropDownItems.AddRange(new ToolStripItem[] { newMenuItem, openMenuItem, saveMenuItem, saveAsMenuItem });
-            fileMenuItem.Name = "fileMenuItem";
-            fileMenuItem.Size = new Size(37, 20);
-            fileMenuItem.Text = "File";
-            // 
-            // newMenuItem
-            // 
-            newMenuItem.Image = Properties.Resources.page_white_add;
-            newMenuItem.Name = "newMenuItem";
-            newMenuItem.Size = new Size(121, 22);
-            newMenuItem.Text = "New";
-            newMenuItem.Click += newMenuItem_Click;
-            // 
-            // openMenuItem
-            // 
-            openMenuItem.Image = Properties.Resources.folder;
-            openMenuItem.Name = "openMenuItem";
-            openMenuItem.Size = new Size(121, 22);
-            openMenuItem.Text = "Open...";
-            openMenuItem.Click += openMenuItem_Click;
-            // 
-            // saveMenuItem
-            // 
-            saveMenuItem.Image = Properties.Resources.disk;
-            saveMenuItem.Name = "saveMenuItem";
-            saveMenuItem.Size = new Size(121, 22);
-            saveMenuItem.Text = "Save";
-            saveMenuItem.Click += saveMenuItem_Click;
-            // 
-            // saveAsMenuItem
-            // 
-            saveAsMenuItem.Name = "saveAsMenuItem";
-            saveAsMenuItem.Size = new Size(121, 22);
-            saveAsMenuItem.Text = "Save as...";
-            saveAsMenuItem.Click += saveAsMenuItem_Click;
             // 
             // sectionTree
             // 
-            sectionTree.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            sectionTree.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sectionTree.Enabled = false;
             sectionTree.HideSelection = false;
             sectionTree.Location = new Point(6, 22);
@@ -142,7 +97,7 @@
             treeNode12.Name = "stgiNode";
             treeNode12.Text = "Stage Info";
             sectionTree.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3, treeNode4, treeNode5, treeNode6, treeNode7, treeNode8, treeNode9, treeNode10, treeNode11, treeNode12 });
-            sectionTree.Size = new Size(209, 525);
+            sectionTree.Size = new Size(159, 558);
             sectionTree.TabIndex = 1;
             sectionTree.AfterSelect += sectionTree_AfterSelect;
             // 
@@ -153,27 +108,27 @@
             entryListBox.ItemHeight = 15;
             entryListBox.Location = new Point(6, 22);
             entryListBox.Name = "entryListBox";
-            entryListBox.Size = new Size(243, 229);
+            entryListBox.Size = new Size(220, 244);
             entryListBox.TabIndex = 2;
             entryListBox.SelectedIndexChanged += entryListBox_SelectedIndexChanged;
             // 
             // entryPropertyGrid
             // 
-            entryPropertyGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            entryPropertyGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             entryPropertyGrid.HelpVisible = false;
             entryPropertyGrid.Location = new Point(6, 22);
             entryPropertyGrid.Name = "entryPropertyGrid";
             entryPropertyGrid.PropertySort = PropertySort.NoSort;
-            entryPropertyGrid.Size = new Size(243, 230);
+            entryPropertyGrid.Size = new Size(220, 248);
             entryPropertyGrid.TabIndex = 3;
             entryPropertyGrid.ToolbarVisible = false;
             // 
             // addButton
             // 
             addButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addButton.Location = new Point(6, 260);
+            addButton.Location = new Point(6, 275);
             addButton.Name = "addButton";
-            addButton.Size = new Size(120, 23);
+            addButton.Size = new Size(97, 23);
             addButton.TabIndex = 4;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -182,7 +137,7 @@
             // removeButton
             // 
             removeButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            removeButton.Location = new Point(132, 260);
+            removeButton.Location = new Point(109, 275);
             removeButton.Name = "removeButton";
             removeButton.Size = new Size(119, 23);
             removeButton.TabIndex = 5;
@@ -192,82 +147,111 @@
             // 
             // entryGroupBox
             // 
-            entryGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            entryGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             entryGroupBox.Controls.Add(addButton);
             entryGroupBox.Controls.Add(removeButton);
             entryGroupBox.Controls.Add(entryListBox);
             entryGroupBox.Enabled = false;
-            entryGroupBox.Location = new Point(844, 27);
+            entryGroupBox.Location = new Point(3, 3);
             entryGroupBox.Name = "entryGroupBox";
-            entryGroupBox.Size = new Size(257, 289);
+            entryGroupBox.Size = new Size(234, 304);
             entryGroupBox.TabIndex = 6;
             entryGroupBox.TabStop = false;
             entryGroupBox.Text = "Entries";
             // 
             // propertyGroupBox
             // 
-            propertyGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            propertyGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             propertyGroupBox.Controls.Add(entryPropertyGrid);
             propertyGroupBox.Enabled = false;
-            propertyGroupBox.Location = new Point(844, 322);
+            propertyGroupBox.Location = new Point(3, 313);
             propertyGroupBox.Name = "propertyGroupBox";
-            propertyGroupBox.Size = new Size(257, 258);
+            propertyGroupBox.Size = new Size(234, 276);
             propertyGroupBox.TabIndex = 7;
             propertyGroupBox.TabStop = false;
             propertyGroupBox.Text = "Properties";
             // 
             // viewport
             // 
-            viewport.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             viewport.AutoSize = true;
             viewport.BackColor = SystemColors.ControlDark;
-            viewport.Location = new Point(239, 35);
+            viewport.Dock = DockStyle.Fill;
+            viewport.Location = new Point(0, 0);
             viewport.Name = "viewport";
-            viewport.Size = new Size(599, 545);
+            viewport.Size = new Size(688, 592);
             viewport.TabIndex = 8;
             // 
             // sectionGroupBox
             // 
-            sectionGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            sectionGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             sectionGroupBox.Controls.Add(sectionTree);
-            sectionGroupBox.Location = new Point(12, 27);
+            sectionGroupBox.Location = new Point(3, 3);
             sectionGroupBox.Name = "sectionGroupBox";
-            sectionGroupBox.Size = new Size(221, 553);
+            sectionGroupBox.Size = new Size(171, 586);
             sectionGroupBox.TabIndex = 9;
             sectionGroupBox.TabStop = false;
             sectionGroupBox.Text = "KMP Sections";
             // 
-            // MainForm
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(entryGroupBox);
+            splitContainer1.Panel2.Controls.Add(propertyGroupBox);
+            splitContainer1.Size = new Size(1113, 592);
+            splitContainer1.SplitterDistance = 869;
+            splitContainer1.TabIndex = 10;
+            // 
+            // splitContainer2
+            // 
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(0, 0);
+            splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(sectionGroupBox);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(viewport);
+            splitContainer2.Size = new Size(869, 592);
+            splitContainer2.SplitterDistance = 177;
+            splitContainer2.TabIndex = 0;
+            // 
+            // KMPEditorForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1113, 592);
-            Controls.Add(sectionGroupBox);
-            Controls.Add(viewport);
-            Controls.Add(propertyGroupBox);
-            Controls.Add(entryGroupBox);
-            Controls.Add(menuStrip1);
+            Controls.Add(splitContainer1);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MainMenuStrip = menuStrip1;
-            Name = "MainForm";
+            Name = "KMPEditorForm";
             Text = "KMP Editor";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
             entryGroupBox.ResumeLayout(false);
             propertyGroupBox.ResumeLayout(false);
             sectionGroupBox.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem fileMenuItem;
-        private ToolStripMenuItem newMenuItem;
-        private ToolStripMenuItem openMenuItem;
-        private ToolStripMenuItem saveMenuItem;
-        private ToolStripMenuItem saveAsMenuItem;
         private TreeView sectionTree;
         private ListBox entryListBox;
         private PropertyGrid entryPropertyGrid;
@@ -277,5 +261,7 @@
         private GroupBox propertyGroupBox;
         private Viewport2D viewport;
         private GroupBox sectionGroupBox;
+        private SplitContainer splitContainer1;
+        private SplitContainer splitContainer2;
     }
 }
