@@ -11,5 +11,6 @@ Wii file editor inspired by [Wexos's Toolbox](https://wiki.tockdom.com/wiki/Wexo
 | BMM | Yes | Yes | Yes |
 | KMP* | Yes | Yes, with limited capabilities | Yes |
 | BRRES* | No | No | No |
+| BLIGHT | Yes | Yes | Yes |
 
 \* Indicates that editing for the file type is still under development
