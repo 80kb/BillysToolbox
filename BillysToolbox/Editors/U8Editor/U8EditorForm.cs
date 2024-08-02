@@ -71,10 +71,15 @@ namespace BillysToolbox.Editors
                 { new List<string> { ".brwsd", "Binary Revolution Wave Sound Data" }, 1 },
                 { new List<string> { ".brasd", "Binary Revolution Animation Sound Data" }, 1 },
                 { new List<string> { ".bdof", "Binary Depth of Field" }, 8 },
+                { new List<string> { ".bdof1", "Binary Depth of Field" }, 8 },
                 { new List<string> { ".bblm", "Binary Bloom" }, 9 },
+                { new List<string> { ".bblm1", "Binary Bloom" }, 9 },
                 { new List<string> { ".blmap", "Binary Light Map" }, 6 },
+                { new List<string> { ".blmap1", "Binary Light Map" }, 6 },
                 { new List<string> { ".bfg", "Binary Fog" }, 7 },
+                { new List<string> { ".bfg1", "Binary Fog" }, 7 },
                 { new List<string> { ".blight", "Binary Lighting" }, 5 },
+                { new List<string> { ".blight1", "Binary Lighting" }, 5 },
             };
 
             InitializeComponent();
