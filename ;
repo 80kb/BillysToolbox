@@ -1,4 +1,4 @@
-﻿using System.Text;
+using System.Text;
 
 namespace kartlib.Serial
 {
@@ -61,10 +61,10 @@ namespace kartlib.Serial
 
             public _Node()
             {
-                Type = NodeType.Directory;
+                Type = NodeType.File;
                 NameOffset = 0;
                 DataOffset = 0;
-                DataSize = 1;
+                DataSize = 0;
                 Name = "";
                 Data = new byte[] { };
             }
@@ -230,7 +230,7 @@ namespace kartlib.Serial
             node.Type = _Node.NodeType.File;
 
             // Insert node
-            Nodes.Insert(index + 1, node);
+            Nodes.Insert(index, node);
             IncrementInternalFolderData(index, 1);
         }
 

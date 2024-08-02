@@ -1,4 +1,5 @@
 using BillysToolbox.Editors;
+using kartlib.Serial;
 using System.Text;
 
 namespace BillysToolbox
@@ -110,6 +111,19 @@ namespace BillysToolbox
 
                 editor.MdiParent = this;
                 editor.WindowState = FormWindowState.Maximized;
+                editor.Show();
+            }
+        }
+
+        private void u8ArchiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            U8 u8 = new U8();
+            string filename = u8.Filename;
+            byte[] buffer = u8.Write();
+            Form? editor = EditorFactory.GetEditor(buffer, filename, null);
+            if(editor != null)
+            {
+                editor.MdiParent = this;
                 editor.Show();
             }
         }

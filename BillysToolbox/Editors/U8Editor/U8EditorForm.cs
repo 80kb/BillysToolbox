@@ -1,6 +1,7 @@
 ﻿using kartlib.Serial;
 using System.Diagnostics;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using KMP_Editor.Control.Nodes;
 
 namespace BillysToolbox.Editors
 {
@@ -112,6 +113,22 @@ namespace BillysToolbox.Editors
 
                 File.WriteAllBytes(sfd.FileName, buffer);
             }
+        }
+
+        private int GetFolderInView()
+        {
+            foreach(ListViewItem item in fileListView.Items)
+            {
+                if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
+                {
+                    return FileInstance.GetNodeFolder((int)item.Tag);
+                }
+                else if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.Directory)
+                {
+                    return (int)Nodes[(int)item.Tag].DataOffset;
+                }
+            }
+            return 0;
         }
 
         private void PopulateListView(int index)
@@ -271,15 +288,16 @@ namespace BillysToolbox.Editors
         private void fileListView_MouseClick(object sender, MouseEventArgs e)
         {
             ListView listView = (ListView)sender;
-            if (listView.SelectedItems.Count == 0) return;
-            ListViewItem item = listView.SelectedItems[0];
-
-            if (e.Button == MouseButtons.Right)
+            if (listView.SelectedItems.Count != 0)
             {
-                if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
-                    fileRightClick.Show(Cursor.Position);
-                else
-                    folderRightClick.Show(Cursor.Position);
+                ListViewItem item = listView.SelectedItems[0];
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
+                        fileRightClick.Show(Cursor.Position);
+                    else
+                        folderRightClick.Show(Cursor.Position);
+                }
             }
         }
 
@@ -300,13 +318,21 @@ namespace BillysToolbox.Editors
         {
             ListView listView = fileListView;
             if (listView.SelectedItems.Count == 0) return;
-            ListViewItem item = listView.SelectedItems[0];
-            int nodeFolder = FileInstance.GetNodeFolder((int)item.Tag);
 
-            if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
-                FileInstance.RemoveFile((int)item.Tag);
+            foreach(ListViewItem item in listView.SelectedItems)
+            {
+                if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
+                {
+                    FileInstance.RemoveFile((int)item.Tag);
+                }
+                else if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.Directory)
+                {
+                    FileInstance.RemoveFolder((int)item.Tag);
+                }
+            }
 
-            PopulateListView(nodeFolder);
+            PopulateListView(GetFolderInView());
+            PopulateTree();
         }
 
         private void exportFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -431,16 +457,7 @@ namespace BillysToolbox.Editors
 
         private void folderDeleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ListView listView = fileListView;
-            if (listView.SelectedItems.Count == 0) return;
-            ListViewItem item = listView.SelectedItems[0];
-            int nodeFolder = (int)Nodes[(int)item.Tag].DataOffset;
-
-            if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.Directory)
-                FileInstance.RemoveFolder((int)item.Tag);
-
-            PopulateListView(nodeFolder);
-            PopulateTree();
+            deleteToolStripMenuItem_Click(sender, e);
         }
 
         private void replaceFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -502,6 +519,47 @@ namespace BillysToolbox.Editors
         private void folderNewFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newFolderToolStripMenuItem_Click(sender, e);
+        }
+
+        private void importFilesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ListView listView = fileListView;
+            if (listView.SelectedItems.Count != 0) return;
+                
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = true;
+            ofd.Filter = "All Files (*.*)|*.*";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                foreach(string file in ofd.FileNames)
+                {
+                    byte[] buffer = File.ReadAllBytes(file);
+                    FileInstance.AddFile(GetFolderInView(), buffer, file);
+                    PopulateListView(GetFolderInView());
+                }
+            }
+        }
+
+        private void fileListView_MouseUp(object sender, MouseEventArgs e)
+        {
+            ListView listView = fileListView;
+            if (listView.SelectedItems.Count != 0) return;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                blankRightClick.Show(Cursor.Position);
+            }
+        }
+
+        private void newFolderToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ListView listView = fileListView;
+            if (listView.SelectedItems.Count != 0) return;
+
+            FileInstance.AddFolder(GetFolderInView(), "New Folder");
+            PopulateListView(GetFolderInView());
+            PopulateTree();
         }
     }
 }
