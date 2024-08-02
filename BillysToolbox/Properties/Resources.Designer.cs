@@ -343,6 +343,16 @@ namespace BillysToolbox.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mii {
+            get {
+                object obj = ResourceManager.GetObject("mii", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap page {
             get {
                 object obj = ResourceManager.GetObject("page", resourceCulture);

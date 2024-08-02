@@ -64,7 +64,7 @@ namespace BillysToolbox.Editors
                 { new List<string> { ".rkg", "Mario Kart Wii Ghost File" }, 1 },
                 { new List<string> { ".ikp", "Inverse Kinematics Parameters" }, 1 },
                 { new List<string> { ".bcp", "Binary Camera Parameters" }, 1 },
-                { new List<string> { ".bmm", "Binary Mii Material" }, 1 },
+                { new List<string> { ".bmm", "Binary Mii Material" }, 10 },
                 { new List<string> { ".brsar", "Binary Revolution Sound Archive" }, 1 },
                 { new List<string> { ".brwar", "Binary Revolution Wave Archive" }, 1 },
                 { new List<string> { ".brstm", "Binary Revolution Stream Sound" }, 1 },
@@ -224,6 +224,7 @@ namespace BillysToolbox.Editors
             Icons.Images.Add("bfg", Properties.Resources.bfg);
             Icons.Images.Add("bdof", Properties.Resources.bdof);
             Icons.Images.Add("bblm", Properties.Resources.bblm);
+            Icons.Images.Add("bmm", Properties.Resources.mii);
             Icons.ImageSize = new Size(16, 16);
             folderTree.ImageList = Icons;
             fileListView.SmallImageList = Icons;
@@ -322,8 +323,9 @@ namespace BillysToolbox.Editors
             ListView listView = fileListView;
             if (listView.SelectedItems.Count == 0) return;
 
-            foreach(ListViewItem item in listView.SelectedItems)
+            for(int i = listView.SelectedItems.Count - 1; i >= 0; i--)
             {
+                ListViewItem item = listView.SelectedItems[i];
                 if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
                 {
                     FileInstance.RemoveFile((int)item.Tag);
