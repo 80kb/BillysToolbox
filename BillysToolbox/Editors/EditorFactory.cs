@@ -1,4 +1,5 @@
 ﻿using kartlib.Serial;
+using System.Diagnostics;
 
 namespace BillysToolbox.Editors
 {
@@ -36,7 +37,21 @@ namespace BillysToolbox.Editors
                     BLIGHT blight = new BLIGHT(buffer, fileName);
                     return new BLIGHTEditorForm(blight, parentInstance);
                 default:
+                    OpenDefault(fileName, buffer);
                     return null;
+            }
+        }
+
+        private static void OpenDefault(string filename, byte[] buffer)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = Path.GetFileName( filename );
+            if(sfd.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllBytes(sfd.FileName, buffer);
+                var p = new Process();
+                p.StartInfo = new ProcessStartInfo(sfd.FileName) { UseShellExecute = true };
+                p.Start();
             }
         }
     }
