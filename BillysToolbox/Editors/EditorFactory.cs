@@ -30,6 +30,11 @@ namespace BillysToolbox.Editors
                 case ".kmp":
                     KMP kmp = new KMP(buffer, fileName);
                     return new KMPEditorForm(kmp, parentInstance);
+                case ".blight":
+                case ".blight1":
+                case ".blight2":
+                    BLIGHT blight = new BLIGHT(buffer, fileName);
+                    return new BLIGHTEditorForm(blight, parentInstance);
                 default:
                     return null;
             }

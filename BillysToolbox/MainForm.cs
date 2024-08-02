@@ -11,6 +11,8 @@ namespace BillysToolbox
             { "ARC Files (*.arc, *.u8)", "*.arc;*.u8" },
             { "BMM Files (*.bmm)", "*.bmm" },
             { "KMP Files (*.kmp)", "*.kmp" },
+            { "BLIGHT Files (*.blight)", "*.blight" },
+            { "All Files (*.*)", "*.*" },
         };
         public List<KeyValuePair<string, byte[]>> Clipboard = new List<KeyValuePair<string, byte[]>>();
 
@@ -23,6 +25,7 @@ namespace BillysToolbox
         {
             OpenFileDialog ofd = new OpenFileDialog();
             StringBuilder filter = new StringBuilder();
+
             foreach (KeyValuePair<string, string> type in FileTypes)
             {
                 if (filter.ToString().CompareTo("") != 0)
@@ -99,14 +102,14 @@ namespace BillysToolbox
             if (args.Length > 1)
             {
                 Form? editor = EditorFactory.GetEditor(args[1]);
-                if(editor == null)
+                if (editor == null)
                 {
                     MessageBox.Show("Unsupported file type!");
                     return;
                 }
 
-                editor.MdiParent    = this;
-                editor.WindowState  = FormWindowState.Maximized;
+                editor.MdiParent = this;
+                editor.WindowState = FormWindowState.Maximized;
                 editor.Show();
             }
         }
