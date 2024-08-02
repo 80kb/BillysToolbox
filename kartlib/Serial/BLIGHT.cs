@@ -1,4 +1,7 @@
-﻿namespace kartlib.Serial
+﻿using System.ComponentModel;
+using System.Drawing;
+
+namespace kartlib.Serial
 {
     public class BLIGHT
     {
@@ -93,36 +96,36 @@
                 Spotlight = 2,
             }
 
-            public UInt32           Magic { get; internal set; }
-            public UInt32           Size { get; internal set; }
-            public Byte             Version { get; internal set; }
+            public UInt32           Magic;
+            public UInt32           Size;
+            [Category("Settings")] public Byte             Version { get; internal set; }
             public Byte[]           Reserved0;
             public Byte[]           Reserved1;
-            public AngleFuncEnum    AngleFunction { get; set; }
-            public DistanceFuncEnum DistanceFunction { get; set; }
-            public CoordDestEnum    CoordDest { get; set; }
-            public LightTypeEnum    LightType { get; set; }
-            public UInt16           AmbientLightIndex { get; set; }
-             
+            [Category("Settings")] public AngleFuncEnum    AngleFunction { get; set; }
+            [Category("Settings")] public DistanceFuncEnum DistanceFunction { get; set; }
+            [Category("Settings")] public CoordDestEnum    CoordDest { get; set; }
+            [Category("Settings")] public LightTypeEnum    LightType { get; set; }
+            [Category("Settings")] public UInt16           AmbientLightIndex { get; set; }
+
             //----------------- bitfield flags -------------------//
-            public bool EnableVectorsAndColors /* 0x1 & 0x40 */ { get; set; }
-            public bool EnableVectorShift      /* 0x2 */        { get; set; }
-            public bool EnableBLMAPLink        /* 0x20 */       { get; set; }
-            public bool EnableAngleFunction    /* 0x80 */       { get; set; }
-            public bool EnableDistanceFunction /* 0x100 */      { get; set; }
-            public bool EnableFixedFunctions   /* 0x800 */      { get; set; }
+            [Category("Flags")] public bool EnableVectorsAndColors /* 0x1 & 0x40 */ { get; set; }
+            [Category("Flags")] public bool EnableVectorShift      /* 0x2 */        { get; set; }
+            [Category("Flags")] public bool EnableBLMAPLink        /* 0x20 */       { get; set; }
+            [Category("Flags")] public bool EnableAngleFunction    /* 0x80 */       { get; set; }
+            [Category("Flags")] public bool EnableDistanceFunction /* 0x100 */      { get; set; }
+            [Category("Flags")] public bool EnableFixedFunctions   /* 0x800 */      { get; set; }
             //----------------------------------------------------//
 
-            public float[] OriginVector { get; set; }
-            public float[] DestVector { get; set; }
-            public float ColorStrength { get; set; }
-            public Byte[] RGBAColor { get; set; }
-            public Byte[] AmbientRGBAColor { get; set; } 
-            public float SpotlightCutoffAngle { get; set; }
-            public float ReferenceDistance { get; set; }
-            public float ReferenceBrightness { get; set; }
+            [Category("Vectors")] public Vector3f OriginVector { get; set; }
+            [Category("Vectors")] public Vector3f DestVector { get; set; }
+            [Category("Color")] public float ColorStrength { get; set; }
+            [Category("Color")] public Color RGBAColor { get; set; }
+            [Category("Color")] public Color AmbientRGBAColor { get; set; } 
+            [Category("Settings")] public float SpotlightCutoffAngle { get; set; }
+            [Category("References")] public float ReferenceDistance { get; set; }
+            [Category("References")] public float ReferenceBrightness { get; set; }
             public UInt32 Reserved2;
-            public UInt16 VectorShiftIndex { get; set; }
+            [Category("Vectors")] public UInt16 VectorShiftIndex { get; set; }
             public UInt16 Reserved3;
 
             public _LightObject()
@@ -146,8 +149,8 @@
                 OriginVector = new float[3];
                 DestVector = new float[3];
                 ColorStrength = 1;
-                RGBAColor = new Byte[4];
-                AmbientRGBAColor = new Byte[4];
+                RGBAColor = Color.FromArgb(0xFF, 0, 0, 0);
+                AmbientRGBAColor = Color.FromArgb(0xFF, 0, 0, 0);
                 SpotlightCutoffAngle = 0;
                 ReferenceDistance = 0;
                 ReferenceBrightness = 0;
@@ -186,8 +189,8 @@
                 OriginVector = reader.ReadFloats(3);
                 DestVector = reader.ReadFloats(3);
                 ColorStrength = reader.ReadFloat();
-                RGBAColor = reader.ReadBytes(4);
-                AmbientRGBAColor = reader.ReadBytes(4);
+                RGBAColor = ReadColor(reader);
+                AmbientRGBAColor = ReadColor(reader);
                 SpotlightCutoffAngle = reader.ReadFloat();
                 ReferenceDistance = reader.ReadFloat();
                 ReferenceBrightness = reader.ReadFloat();
@@ -223,8 +226,8 @@
                 writer.WriteSingles(OriginVector);
                 writer.WriteSingles(DestVector);
                 writer.WriteSingle(ColorStrength);
-                writer.WriteBytes(RGBAColor);
-                writer.WriteBytes(AmbientRGBAColor);
+                WriteColor(writer, RGBAColor);
+                WriteColor(writer, AmbientRGBAColor);
                 writer.WriteSingle(SpotlightCutoffAngle);
                 writer.WriteSingle(ReferenceDistance);
                 writer.WriteSingle(ReferenceBrightness);
@@ -232,29 +235,59 @@
                 writer.WriteUInt16(VectorShiftIndex);
                 writer.WriteUInt16(Reserved3);
             }
+
+            private Color ReadColor(EndianReader reader)
+            {
+                int r = reader.ReadByte();
+                int g = reader.ReadByte();
+                int b = reader.ReadByte();
+                int a = reader.ReadByte();
+                return Color.FromArgb(a, r, g, b);
+            }
+
+            private void WriteColor(EndianWriter writer, Color color)
+            {
+                byte[] colorbytes = new byte[] { color.R, color.G, color.B, color.A };
+                writer.WriteBytes(colorbytes);
+            }
         }
 
         public class _AmbientLight
         {
-            public Byte[] RGBAColor { get; set; }
+            public Color RGBAColor { get; set; }
             public UInt32 Reserved;
 
             public _AmbientLight()
             {
-                RGBAColor = new Byte[4] { 0x64, 0x64, 0x64, 0xFF };
+                RGBAColor = Color.FromArgb( 0x64, 0x64, 0x64, 0xFF);
                 Reserved = 0;
             }
 
             public _AmbientLight(EndianReader reader)
             {
-                RGBAColor = reader.ReadBytes(4);
+                RGBAColor = ReadColor(reader);
                 Reserved = reader.ReadUInt32();
             }
 
             public void Write(EndianWriter writer)
             {
-                writer.WriteBytes(RGBAColor);
+                WriteColor(writer, RGBAColor);
                 writer.WriteUInt32(Reserved);
+            }
+
+            private Color ReadColor(EndianReader reader)
+            {
+                int r = reader.ReadByte();
+                int g = reader.ReadByte();
+                int b = reader.ReadByte();
+                int a = reader.ReadByte();
+                return Color.FromArgb(a, r, g, b);
+            }
+
+            private void WriteColor(EndianWriter writer, Color color)
+            {
+                byte[] colorbytes = new byte[] { color.R, color.G, color.B, color.A };
+                writer.WriteBytes(colorbytes);
             }
         }
 
