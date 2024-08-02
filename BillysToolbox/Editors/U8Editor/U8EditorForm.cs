@@ -117,6 +117,9 @@ namespace BillysToolbox.Editors
 
         private int GetFolderInView()
         {
+            if(Nodes.Count < 2)
+                return 0;
+
             foreach(ListViewItem item in fileListView.Items)
             {
                 if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
