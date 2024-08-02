@@ -4,13 +4,13 @@ Wii file editor inspired by [Wexos's Toolbox](https://wiki.tockdom.com/wiki/Wexo
 <img src="https://github.com/80kb/BillysToolbox/blob/master/gh-assets/example.png">
 
 ## Features
-| File Type | Can Open | Can Edit | Can Save |
-|---|---|---|---|
-| U8 | Yes | Yes | Yes |
-| SZS* | Yes | Yes | Yes, with no compression |
-| BMM | Yes | Yes | Yes |
-| KMP* | Yes | Yes, with limited capabilities | Yes |
-| BRRES* | No | No | No |
-| BLIGHT | Yes | Yes | Yes |
+| File Type | Can Open | Can Save |
+|---|---|---|
+| U8 | Yes | Yes |
+| SZS* | Yes | Yes, with no compression |
+| BMM | Yes | Yes |
+| KMP* | Yes | Yes, with limited capabilities |
+| BRRES* | No | No |
+| BLIGHT | Yes | Yes |
 
 \* Indicates that editing for the file type is still under development
