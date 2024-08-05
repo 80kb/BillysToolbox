@@ -14,4 +14,4 @@ Wii file editor inspired by [Wexos's Toolbox](https://wiki.tockdom.com/wiki/Wexo
 | BRRES* | No | No |
 | BLIGHT | Yes | Yes |
 
-\* Indicates that editing for the file type is still under development
+\* Still under development
