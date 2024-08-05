@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-
-namespace SZS_Viewer.Serial
+﻿namespace kartlib.Serial
 {
     public class MDL0
     {

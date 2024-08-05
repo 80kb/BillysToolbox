@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.Text;
 
-namespace SZS_Viewer.Serial
+namespace kartlib.Serial
 {
     public class BRRES
     {

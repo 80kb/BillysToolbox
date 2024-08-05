@@ -13,6 +13,7 @@ namespace BillysToolbox
             { "BMM Files (*.bmm)", "*.bmm" },
             { "KMP Files (*.kmp)", "*.kmp" },
             { "BLIGHT Files (*.blight)", "*.blight" },
+            { "KCL Files (*.kcl)", "*.kcl" },
             { "All Files (*.*)", "*.*" },
         };
         public List<KeyValuePair<string, byte[]>> Clipboard = new List<KeyValuePair<string, byte[]>>();
@@ -118,9 +119,18 @@ namespace BillysToolbox
         private void u8ArchiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             U8 u8 = new U8();
-            string filename = u8.Filename;
-            byte[] buffer = u8.Write();
-            Form? editor = EditorFactory.GetEditor(buffer, filename, null);
+            U8EditorForm? editor = new U8EditorForm(u8);
+            if (editor != null)
+            {
+                editor.MdiParent = this;
+                editor.Show();
+            }
+        }
+
+        private void kCLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KCL kcl = new KCL();
+            KCLEditorForm? editor = new KCLEditorForm(kcl);
             if(editor != null)
             {
                 editor.MdiParent = this;
