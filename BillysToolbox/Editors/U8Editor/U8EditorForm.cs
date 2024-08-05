@@ -116,10 +116,10 @@ namespace BillysToolbox.Editors
 
         private int GetFolderInView()
         {
-            if(Nodes.Count < 2)
+            if (Nodes.Count < 2)
                 return 0;
 
-            foreach(ListViewItem item in fileListView.Items)
+            foreach (ListViewItem item in fileListView.Items)
             {
                 if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
                 {
@@ -322,7 +322,7 @@ namespace BillysToolbox.Editors
             ListView listView = fileListView;
             if (listView.SelectedItems.Count == 0) return;
 
-            for(int i = listView.SelectedItems.Count - 1; i >= 0; i--)
+            for (int i = listView.SelectedItems.Count - 1; i >= 0; i--)
             {
                 ListViewItem item = listView.SelectedItems[i];
                 if (Nodes[(int)item.Tag].Type == U8._Node.NodeType.File)
@@ -342,20 +342,38 @@ namespace BillysToolbox.Editors
         private void exportFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ListView listView = fileListView;
-            if (listView.SelectedItems.Count == 0) return;
-            ListViewItem item = listView.SelectedItems[0];
-
-            if (Nodes[(int)item.Tag].Data == null) return;
-
-            string extension = Path.GetExtension(Nodes[(int)item.Tag].Name);
-            string noDot = extension.Replace(".", "").ToUpper();
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = Nodes[(int)item.Tag].Name;
-            sfd.Filter = noDot + " Files (*" + extension + ")|*" + extension + "|All Files (*.*)|*.*";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (listView.SelectedItems.Count == 0)
             {
-                File.WriteAllBytes(sfd.FileName, Nodes[(int)item.Tag].Data);
+                return;
+            }
+            else if(listView.SelectedItems.Count == 1)
+            {
+                ListViewItem item = listView.SelectedItems[0];
+                if (Nodes[(int)item.Tag].Data == null) return;
+
+                string extension = Path.GetExtension(Nodes[(int)item.Tag].Name);
+                string noDot = extension.Replace(".", "").ToUpper();
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName = Nodes[(int)item.Tag].Name;
+                sfd.Filter = noDot + " Files (*" + extension + ")|*" + extension + "|All Files (*.*)|*.*";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllBytes(sfd.FileName, Nodes[(int)item.Tag].Data);
+                }
+            }
+            else
+            {
+                CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+                dialog.IsFolderPicker = true;
+                if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    foreach (ListViewItem item in listView.SelectedItems)
+                    {
+                        string savePath = Path.Combine(dialog.FileName, Path.GetFileName(Nodes[(int)item.Tag].Name));
+                        File.WriteAllBytes(savePath, Nodes[(int)item.Tag].Data);
+                    }
+                }
             }
         }
 
@@ -529,14 +547,14 @@ namespace BillysToolbox.Editors
         {
             ListView listView = fileListView;
             if (listView.SelectedItems.Count != 0) return;
-                
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Multiselect = true;
             ofd.Filter = "All Files (*.*)|*.*";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                foreach(string file in ofd.FileNames)
+                foreach (string file in ofd.FileNames)
                 {
                     byte[] buffer = File.ReadAllBytes(file);
                     FileInstance.AddFile(GetFolderInView(), buffer, file);

@@ -105,11 +105,13 @@
             // 
             // statusStrip
             // 
+            statusStrip.BackColor = Color.Transparent;
             statusStrip.Items.AddRange(new ToolStripItem[] { itemCountStatusLabel, selectionStatusLabel });
             statusStrip.Location = new Point(0, 428);
             statusStrip.Name = "statusStrip";
             statusStrip.RightToLeft = RightToLeft.No;
             statusStrip.Size = new Size(587, 22);
+            statusStrip.SizingGrip = false;
             statusStrip.TabIndex = 1;
             statusStrip.Text = "statusStrip1";
             // 
@@ -161,13 +163,13 @@
             // 
             fileRightClick.Items.AddRange(new ToolStripItem[] { copyToolStripMenuItem, cutToolStripMenuItem, pasteToolStripMenuItem, toolStripSeparator1, renameToolStripMenuItem, deleteToolStripMenuItem, toolStripSeparator2, exportFileToolStripMenuItem, importFilesToolStripMenuItem, replaceFileToolStripMenuItem, toolStripSeparator3, newFolderToolStripMenuItem });
             fileRightClick.Name = "contextMenuStrip1";
-            fileRightClick.Size = new Size(152, 220);
+            fileRightClick.Size = new Size(181, 242);
             // 
             // copyToolStripMenuItem
             // 
             copyToolStripMenuItem.Image = Properties.Resources.page_copy;
             copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            copyToolStripMenuItem.Size = new Size(151, 22);
+            copyToolStripMenuItem.Size = new Size(180, 22);
             copyToolStripMenuItem.Text = "Copy";
             copyToolStripMenuItem.Click += copyToolStripMenuItem_Click;
             // 
@@ -175,7 +177,7 @@
             // 
             cutToolStripMenuItem.Image = Properties.Resources.cut;
             cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            cutToolStripMenuItem.Size = new Size(151, 22);
+            cutToolStripMenuItem.Size = new Size(180, 22);
             cutToolStripMenuItem.Text = "Cut";
             cutToolStripMenuItem.Click += cutToolStripMenuItem_Click;
             // 
@@ -183,20 +185,20 @@
             // 
             pasteToolStripMenuItem.Image = Properties.Resources.page_paste;
             pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            pasteToolStripMenuItem.Size = new Size(151, 22);
+            pasteToolStripMenuItem.Size = new Size(180, 22);
             pasteToolStripMenuItem.Text = "Paste";
             pasteToolStripMenuItem.Click += pasteToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(148, 6);
+            toolStripSeparator1.Size = new Size(177, 6);
             // 
             // renameToolStripMenuItem
             // 
             renameToolStripMenuItem.Image = Properties.Resources.textfield;
             renameToolStripMenuItem.Name = "renameToolStripMenuItem";
-            renameToolStripMenuItem.Size = new Size(151, 22);
+            renameToolStripMenuItem.Size = new Size(180, 22);
             renameToolStripMenuItem.Text = "Rename";
             renameToolStripMenuItem.Click += renameToolStripMenuItem_Click;
             // 
@@ -204,28 +206,28 @@
             // 
             deleteToolStripMenuItem.Image = Properties.Resources.cross;
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(151, 22);
+            deleteToolStripMenuItem.Size = new Size(180, 22);
             deleteToolStripMenuItem.Text = "Delete";
             deleteToolStripMenuItem.Click += deleteToolStripMenuItem_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(148, 6);
+            toolStripSeparator2.Size = new Size(177, 6);
             // 
             // exportFileToolStripMenuItem
             // 
             exportFileToolStripMenuItem.Image = Properties.Resources.document_export;
             exportFileToolStripMenuItem.Name = "exportFileToolStripMenuItem";
-            exportFileToolStripMenuItem.Size = new Size(151, 22);
-            exportFileToolStripMenuItem.Text = "Export file...";
+            exportFileToolStripMenuItem.Size = new Size(180, 22);
+            exportFileToolStripMenuItem.Text = "Export file(s)...";
             exportFileToolStripMenuItem.Click += exportFileToolStripMenuItem_Click;
             // 
             // importFilesToolStripMenuItem
             // 
             importFilesToolStripMenuItem.Image = Properties.Resources.document_import;
             importFilesToolStripMenuItem.Name = "importFilesToolStripMenuItem";
-            importFilesToolStripMenuItem.Size = new Size(151, 22);
+            importFilesToolStripMenuItem.Size = new Size(180, 22);
             importFilesToolStripMenuItem.Text = "Import file(s)...";
             importFilesToolStripMenuItem.Click += importFilesToolStripMenuItem_Click;
             // 
@@ -233,20 +235,20 @@
             // 
             replaceFileToolStripMenuItem.Image = Properties.Resources.page_white_edit;
             replaceFileToolStripMenuItem.Name = "replaceFileToolStripMenuItem";
-            replaceFileToolStripMenuItem.Size = new Size(151, 22);
+            replaceFileToolStripMenuItem.Size = new Size(180, 22);
             replaceFileToolStripMenuItem.Text = "Replace file...";
             replaceFileToolStripMenuItem.Click += replaceFileToolStripMenuItem_Click;
             // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(148, 6);
+            toolStripSeparator3.Size = new Size(177, 6);
             // 
             // newFolderToolStripMenuItem
             // 
             newFolderToolStripMenuItem.Image = Properties.Resources.folder_add;
             newFolderToolStripMenuItem.Name = "newFolderToolStripMenuItem";
-            newFolderToolStripMenuItem.Size = new Size(151, 22);
+            newFolderToolStripMenuItem.Size = new Size(180, 22);
             newFolderToolStripMenuItem.Text = "New folder";
             newFolderToolStripMenuItem.Click += newFolderToolStripMenuItem_Click;
             // 
@@ -323,7 +325,7 @@
             // 
             importFilesToolStripMenuItem1.Image = Properties.Resources.document_import;
             importFilesToolStripMenuItem1.Name = "importFilesToolStripMenuItem1";
-            importFilesToolStripMenuItem1.Size = new Size(180, 22);
+            importFilesToolStripMenuItem1.Size = new Size(151, 22);
             importFilesToolStripMenuItem1.Text = "Import file(s)...";
             importFilesToolStripMenuItem1.Click += importFilesToolStripMenuItem1_Click;
             // 
@@ -331,7 +333,7 @@
             // 
             newFolderToolStripMenuItem1.Image = Properties.Resources.folder_add;
             newFolderToolStripMenuItem1.Name = "newFolderToolStripMenuItem1";
-            newFolderToolStripMenuItem1.Size = new Size(180, 22);
+            newFolderToolStripMenuItem1.Size = new Size(151, 22);
             newFolderToolStripMenuItem1.Text = "New folder";
             newFolderToolStripMenuItem1.Click += newFolderToolStripMenuItem1_Click;
             // 
@@ -339,7 +341,7 @@
             // 
             blankRightClick.Items.AddRange(new ToolStripItem[] { importFilesToolStripMenuItem1, newFolderToolStripMenuItem1 });
             blankRightClick.Name = "blankRightClick";
-            blankRightClick.Size = new Size(181, 70);
+            blankRightClick.Size = new Size(152, 48);
             // 
             // U8EditorForm
             // 
