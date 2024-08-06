@@ -1,4 +1,5 @@
 using BillysToolbox.Editors;
+using kartlib.Img;
 using kartlib.Serial;
 using System.Text;
 
@@ -160,6 +161,10 @@ namespace BillysToolbox
                 editor.Show();
             }
 
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }

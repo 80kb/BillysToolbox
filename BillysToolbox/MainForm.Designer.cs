@@ -32,10 +32,10 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             newToolStripMenuItem = new ToolStripMenuItem();
             u8ArchiveToolStripMenuItem = new ToolStripMenuItem();
-            kCLToolStripMenuItem = new ToolStripMenuItem();
             postEffectToolStripMenuItem = new ToolStripMenuItem();
             bLIGHTToolStripMenuItem1 = new ToolStripMenuItem();
             bDOFToolStripMenuItem1 = new ToolStripMenuItem();
+            kCLToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveAsToolStripMenuItem = new ToolStripMenuItem();
@@ -69,38 +69,30 @@
             newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { u8ArchiveToolStripMenuItem, postEffectToolStripMenuItem, kCLToolStripMenuItem });
             newToolStripMenuItem.Image = Properties.Resources.page_white_add;
             newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(180, 22);
+            newToolStripMenuItem.Size = new Size(121, 22);
             newToolStripMenuItem.Text = "New";
             // 
             // u8ArchiveToolStripMenuItem
             // 
             u8ArchiveToolStripMenuItem.Image = Properties.Resources.szs;
             u8ArchiveToolStripMenuItem.Name = "u8ArchiveToolStripMenuItem";
-            u8ArchiveToolStripMenuItem.Size = new Size(180, 22);
+            u8ArchiveToolStripMenuItem.Size = new Size(132, 22);
             u8ArchiveToolStripMenuItem.Text = "U8 Archive";
             u8ArchiveToolStripMenuItem.Click += u8ArchiveToolStripMenuItem_Click;
-            // 
-            // kCLToolStripMenuItem
-            // 
-            kCLToolStripMenuItem.Image = Properties.Resources.brres;
-            kCLToolStripMenuItem.Name = "kCLToolStripMenuItem";
-            kCLToolStripMenuItem.Size = new Size(180, 22);
-            kCLToolStripMenuItem.Text = "KCL";
-            kCLToolStripMenuItem.Click += kCLToolStripMenuItem_Click;
             // 
             // postEffectToolStripMenuItem
             // 
             postEffectToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bLIGHTToolStripMenuItem1, bDOFToolStripMenuItem1 });
             postEffectToolStripMenuItem.Image = Properties.Resources.camera;
             postEffectToolStripMenuItem.Name = "postEffectToolStripMenuItem";
-            postEffectToolStripMenuItem.Size = new Size(180, 22);
+            postEffectToolStripMenuItem.Size = new Size(132, 22);
             postEffectToolStripMenuItem.Text = "Post-Effect";
             // 
             // bLIGHTToolStripMenuItem1
             // 
             bLIGHTToolStripMenuItem1.Image = Properties.Resources.help;
             bLIGHTToolStripMenuItem1.Name = "bLIGHTToolStripMenuItem1";
-            bLIGHTToolStripMenuItem1.Size = new Size(180, 22);
+            bLIGHTToolStripMenuItem1.Size = new Size(113, 22);
             bLIGHTToolStripMenuItem1.Text = "BLIGHT";
             bLIGHTToolStripMenuItem1.Click += bLIGHTToolStripMenuItem1_Click;
             // 
@@ -108,15 +100,23 @@
             // 
             bDOFToolStripMenuItem1.Image = Properties.Resources.bdof;
             bDOFToolStripMenuItem1.Name = "bDOFToolStripMenuItem1";
-            bDOFToolStripMenuItem1.Size = new Size(180, 22);
+            bDOFToolStripMenuItem1.Size = new Size(113, 22);
             bDOFToolStripMenuItem1.Text = "BDOF";
             bDOFToolStripMenuItem1.Click += bDOFToolStripMenuItem1_Click;
+            // 
+            // kCLToolStripMenuItem
+            // 
+            kCLToolStripMenuItem.Image = Properties.Resources.brres;
+            kCLToolStripMenuItem.Name = "kCLToolStripMenuItem";
+            kCLToolStripMenuItem.Size = new Size(132, 22);
+            kCLToolStripMenuItem.Text = "KCL";
+            kCLToolStripMenuItem.Click += kCLToolStripMenuItem_Click;
             // 
             // openToolStripMenuItem
             // 
             openToolStripMenuItem.Image = Properties.Resources.folder;
             openToolStripMenuItem.Name = "openToolStripMenuItem";
-            openToolStripMenuItem.Size = new Size(180, 22);
+            openToolStripMenuItem.Size = new Size(121, 22);
             openToolStripMenuItem.Text = "Open...";
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
             // 
@@ -124,7 +124,7 @@
             // 
             saveToolStripMenuItem.Image = Properties.Resources.disk;
             saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            saveToolStripMenuItem.Size = new Size(180, 22);
+            saveToolStripMenuItem.Size = new Size(121, 22);
             saveToolStripMenuItem.Text = "Save";
             saveToolStripMenuItem.Click += saveToolStripMenuItem_Click;
             // 
@@ -132,20 +132,20 @@
             // 
             saveAsToolStripMenuItem.Image = Properties.Resources.save_as;
             saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            saveAsToolStripMenuItem.Size = new Size(180, 22);
+            saveAsToolStripMenuItem.Size = new Size(121, 22);
             saveAsToolStripMenuItem.Text = "Save as...";
             saveAsToolStripMenuItem.Click += saveAsToolStripMenuItem_Click;
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(177, 6);
+            toolStripSeparator1.Size = new Size(118, 6);
             // 
             // settingsToolStripMenuItem
             // 
             settingsToolStripMenuItem.Image = Properties.Resources.tool;
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            settingsToolStripMenuItem.Size = new Size(180, 22);
+            settingsToolStripMenuItem.Size = new Size(121, 22);
             settingsToolStripMenuItem.Text = "Settings";
             // 
             // menuStrip
@@ -175,7 +175,7 @@
             // 
             aboutToolStripMenuItem1.Image = Properties.Resources.help;
             aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            aboutToolStripMenuItem1.Size = new Size(107, 22);
+            aboutToolStripMenuItem1.Size = new Size(180, 22);
             aboutToolStripMenuItem1.Text = "About";
             aboutToolStripMenuItem1.Click += aboutToolStripMenuItem1_Click;
             // 
@@ -183,8 +183,9 @@
             // 
             helpToolStripMenuItem.Image = Properties.Resources.kmp;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(107, 22);
+            helpToolStripMenuItem.Size = new Size(180, 22);
             helpToolStripMenuItem.Text = "Help";
+            helpToolStripMenuItem.Click += helpToolStripMenuItem_Click;
             // 
             // toolStrip1
             // 
