@@ -131,11 +131,35 @@ namespace BillysToolbox
         {
             KCL kcl = new KCL();
             KCLEditorForm? editor = new KCLEditorForm(kcl);
-            if(editor != null)
+            if (editor != null)
             {
                 editor.MdiParent = this;
                 editor.Show();
             }
+        }
+
+        private void bLIGHTToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            BLIGHT blight = new BLIGHT();
+            BLIGHTEditorForm? editor = new BLIGHTEditorForm(blight);
+            if (editor != null)
+            {
+                editor.MdiParent = this;
+                editor.Show();
+            }
+
+        }
+
+        private void bDOFToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            BDOF bdof = new BDOF();
+            BDOFEditorForm? editor = new BDOFEditorForm(bdof);
+            if (editor != null)
+            {
+                editor.MdiParent = this;
+                editor.Show();
+            }
+
         }
     }
 }

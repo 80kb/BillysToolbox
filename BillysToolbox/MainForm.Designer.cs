@@ -32,6 +32,10 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             newToolStripMenuItem = new ToolStripMenuItem();
             u8ArchiveToolStripMenuItem = new ToolStripMenuItem();
+            kCLToolStripMenuItem = new ToolStripMenuItem();
+            postEffectToolStripMenuItem = new ToolStripMenuItem();
+            bLIGHTToolStripMenuItem1 = new ToolStripMenuItem();
+            bDOFToolStripMenuItem1 = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveAsToolStripMenuItem = new ToolStripMenuItem();
@@ -49,7 +53,6 @@
             openToolStripButton = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             settingsToolStripButton = new ToolStripButton();
-            kCLToolStripMenuItem = new ToolStripMenuItem();
             menuStrip.SuspendLayout();
             toolStrip1.SuspendLayout();
             SuspendLayout();
@@ -63,7 +66,7 @@
             // 
             // newToolStripMenuItem
             // 
-            newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { u8ArchiveToolStripMenuItem, kCLToolStripMenuItem });
+            newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { u8ArchiveToolStripMenuItem, postEffectToolStripMenuItem, kCLToolStripMenuItem });
             newToolStripMenuItem.Image = Properties.Resources.page_white_add;
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.Size = new Size(180, 22);
@@ -76,6 +79,38 @@
             u8ArchiveToolStripMenuItem.Size = new Size(180, 22);
             u8ArchiveToolStripMenuItem.Text = "U8 Archive";
             u8ArchiveToolStripMenuItem.Click += u8ArchiveToolStripMenuItem_Click;
+            // 
+            // kCLToolStripMenuItem
+            // 
+            kCLToolStripMenuItem.Image = Properties.Resources.brres;
+            kCLToolStripMenuItem.Name = "kCLToolStripMenuItem";
+            kCLToolStripMenuItem.Size = new Size(180, 22);
+            kCLToolStripMenuItem.Text = "KCL";
+            kCLToolStripMenuItem.Click += kCLToolStripMenuItem_Click;
+            // 
+            // postEffectToolStripMenuItem
+            // 
+            postEffectToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bLIGHTToolStripMenuItem1, bDOFToolStripMenuItem1 });
+            postEffectToolStripMenuItem.Image = Properties.Resources.camera;
+            postEffectToolStripMenuItem.Name = "postEffectToolStripMenuItem";
+            postEffectToolStripMenuItem.Size = new Size(180, 22);
+            postEffectToolStripMenuItem.Text = "Post-Effect";
+            // 
+            // bLIGHTToolStripMenuItem1
+            // 
+            bLIGHTToolStripMenuItem1.Image = Properties.Resources.help;
+            bLIGHTToolStripMenuItem1.Name = "bLIGHTToolStripMenuItem1";
+            bLIGHTToolStripMenuItem1.Size = new Size(180, 22);
+            bLIGHTToolStripMenuItem1.Text = "BLIGHT";
+            bLIGHTToolStripMenuItem1.Click += bLIGHTToolStripMenuItem1_Click;
+            // 
+            // bDOFToolStripMenuItem1
+            // 
+            bDOFToolStripMenuItem1.Image = Properties.Resources.bdof;
+            bDOFToolStripMenuItem1.Name = "bDOFToolStripMenuItem1";
+            bDOFToolStripMenuItem1.Size = new Size(180, 22);
+            bDOFToolStripMenuItem1.Text = "BDOF";
+            bDOFToolStripMenuItem1.Click += bDOFToolStripMenuItem1_Click;
             // 
             // openToolStripMenuItem
             // 
@@ -209,14 +244,6 @@
             settingsToolStripButton.Size = new Size(23, 22);
             settingsToolStripButton.Text = "Settings";
             // 
-            // kCLToolStripMenuItem
-            // 
-            kCLToolStripMenuItem.Image = Properties.Resources.brres;
-            kCLToolStripMenuItem.Name = "kCLToolStripMenuItem";
-            kCLToolStripMenuItem.Size = new Size(180, 22);
-            kCLToolStripMenuItem.Text = "KCL";
-            kCLToolStripMenuItem.Click += kCLToolStripMenuItem_Click;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -262,5 +289,8 @@
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem u8ArchiveToolStripMenuItem;
         private ToolStripMenuItem kCLToolStripMenuItem;
+        private ToolStripMenuItem postEffectToolStripMenuItem;
+        private ToolStripMenuItem bLIGHTToolStripMenuItem1;
+        private ToolStripMenuItem bDOFToolStripMenuItem1;
     }
 }

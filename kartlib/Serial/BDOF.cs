@@ -16,7 +16,7 @@ namespace kartlib.Serial
         public UInt32 Size;
         [Category("Settings")] public UInt32 Unknown0 { get; set; }
         [Category("Settings")] public UInt32 Unknown1 { get; set; }
-        [Category("Settings")] public bool EnableIndirectTexture { get; set; }
+        [Category("Settings")] public UInt16 Flags { get; set; }
         [Category("Alpha")] public Byte InverseAlpha { get; set; }
         [Category("Alpha")] public Byte Alpha { get; set; }
         [Category("Drawing")] public DrawModeEnum DrawMode { get; set; }
@@ -39,7 +39,7 @@ namespace kartlib.Serial
             Size = 0x50;
             Unknown0 = 0;
             Unknown1 = 0;
-            EnableIndirectTexture = false;
+            Flags = 0;
             InverseAlpha = 0;
             Alpha = 0;
             DrawMode = DrawModeEnum.None;
@@ -66,7 +66,7 @@ namespace kartlib.Serial
                 Size = reader.ReadUInt32();
                 Unknown0 = reader.ReadUInt32();
                 Unknown1 = reader.ReadUInt32();
-                EnableIndirectTexture = (reader.ReadUInt16() & 0x1) > 0 ? true : false;
+                Flags = reader.ReadUInt16();
                 InverseAlpha = reader.ReadByte();
                 Alpha = reader.ReadByte();
                 DrawMode = (DrawModeEnum)reader.ReadByte();
@@ -98,7 +98,7 @@ namespace kartlib.Serial
                 writer.WriteUInt32(Size);
                 writer.WriteUInt32(Unknown0);
                 writer.WriteUInt32(Unknown1);
-                writer.WriteUInt16(EnableIndirectTexture ? (ushort)1 : (ushort)0);
+                writer.WriteUInt16(Flags);
                 writer.WriteByte(InverseAlpha);
                 writer.WriteByte(Alpha);
                 writer.WriteByte((byte)DrawMode);
