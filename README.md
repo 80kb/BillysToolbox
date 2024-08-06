@@ -13,5 +13,6 @@ Wii file editor inspired by [Wexos's Toolbox](https://wiki.tockdom.com/wiki/Wexo
 | KCL | Yes | Yes |
 | BRRES* | No | No |
 | BLIGHT | Yes | Yes |
+| BDOF | Yes | Yes |
 
 \* Still under development

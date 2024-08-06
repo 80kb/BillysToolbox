@@ -39,6 +39,11 @@ namespace BillysToolbox.Editors
                 case ".blight2":
                     BLIGHT blight = new BLIGHT(buffer, fileName);
                     return new BLIGHTEditorForm(blight, parentInstance);
+                case ".bdof":
+                case ".bdof1":
+                case ".bdof2":
+                    BDOF bdof = new BDOF(buffer, fileName);
+                    return new BDOFEditorForm(bdof, parentInstance);
                 default:
                     OpenDefault(fileName, buffer);
                     return null;
