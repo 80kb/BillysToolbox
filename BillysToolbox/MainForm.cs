@@ -173,5 +173,27 @@ namespace BillysToolbox
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
+
+        private void bMMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BMM bmm = new BMM();
+            BMMEditorForm? editor = new(bmm);
+            if (editor != null)
+            {
+                editor.MdiParent = this;
+                editor.Show();
+            }
+        }
+
+        private void kMPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KMP kmp = new();
+            KMPEditorForm? editor = new(kmp);
+            if(editor != null)
+            {
+                editor.MdiParent = this;
+                editor.Show();
+            }
+        }
     }
 }
