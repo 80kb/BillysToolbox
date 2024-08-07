@@ -45,21 +45,7 @@ namespace BillysToolbox.Editors
                     BDOF bdof = new BDOF(buffer, fileName);
                     return new BDOFEditorForm(bdof, parentInstance);
                 default:
-                    OpenDefault(fileName, buffer);
                     return null;
-            }
-        }
-
-        private static void OpenDefault(string filename, byte[] buffer)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = Path.GetFileName( filename );
-            if(sfd.ShowDialog() == DialogResult.OK)
-            {
-                File.WriteAllBytes(sfd.FileName, buffer);
-                var p = new Process();
-                p.StartInfo = new ProcessStartInfo(sfd.FileName) { UseShellExecute = true };
-                p.Start();
             }
         }
     }
