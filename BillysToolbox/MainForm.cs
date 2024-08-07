@@ -14,6 +14,7 @@ namespace BillysToolbox
             { "BMM Files (*.bmm)", "*.bmm" },
             { "KMP Files (*.kmp)", "*.kmp" },
             { "BLIGHT Files (*.blight)", "*.blight" },
+            { "BDOF Files (*.bdof_", "*.bdof" },
             { "KCL Files (*.kcl)", "*.kcl" },
             { "All Files (*.*)", "*.*" },
         };
