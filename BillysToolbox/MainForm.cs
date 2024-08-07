@@ -136,6 +136,13 @@ namespace BillysToolbox
             {
                 editor.MdiParent = this;
                 editor.Show();
+
+                ImportOBJ importOBJ = new ImportOBJ();
+                if (importOBJ.ShowDialog() == DialogResult.OK)
+                {
+                    if (importOBJ.OBJ != null)
+                        editor.ParseOBJ(importOBJ.OBJ);
+                }
             }
         }
 
