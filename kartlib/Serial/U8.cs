@@ -105,7 +105,7 @@ namespace kartlib.Serial
 
         public U8()
         {
-            Filename = "Untitled.u8";
+            Filename = "Untitled.arc";
             Header = new _Header();
             Nodes = new List<_Node>() { new _Node() };
         }
