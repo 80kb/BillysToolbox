@@ -1,4 +1,4 @@
-﻿using kartlib.Img;
+﻿using kartlib.Imaging;
 using System.Drawing;
 
 namespace kartlib.Serial
@@ -93,7 +93,7 @@ namespace kartlib.Serial
         {
             public UInt16 Height;
             public UInt16 Width;
-            public ImageFormat Format;
+            public ImageFormatEnum Format;
             public UInt32 DataAddress;
             public UInt32 WrapS;
             public UInt32 WrapT;
@@ -113,7 +113,7 @@ namespace kartlib.Serial
             {
                 Height = reader.ReadUInt16();
                 Width = reader.ReadUInt16();
-                Format = (ImageFormat)reader.ReadUInt32();
+                Format = (ImageFormatEnum)reader.ReadUInt32();
                 DataAddress = reader.ReadUInt32();
                 WrapS = reader.ReadUInt32();
                 WrapT = reader.ReadUInt32();
@@ -146,24 +146,40 @@ namespace kartlib.Serial
 
         public class _Image
         {
-            public _ImageHeader ImageHeader;
-            public byte[] ImageData;
+            private _ImageHeader ImageHeader;
+            private _PaletteHeader? PaletteHeader;
+            private ImageFormat Format;
+            private byte[] ImageData;
+            private byte[]? PaletteData;
 
-            public _PaletteHeader? PaletteHeader;
-            public byte[] PaletteData;
+            public Bitmap? Image;
 
             public _Image (EndianReader reader, _ImageTable table)
             {
-                // Image Header
-                reader.Position = (int)table.ImageOffset;
-                ImageHeader = new _ImageHeader(reader);
-
-                // Palette Header
-                if(table.PaletteOffset != 0)
+                // Palette Header/Data
+                if (table.PaletteOffset != 0)
                 {
                     reader.Position = (int)table.PaletteOffset;
                     PaletteHeader = new _PaletteHeader(reader);
+
+                    reader.Position = (int)PaletteHeader.DataAddress;
+                    PaletteData = reader.ReadBytes(PaletteHeader.EntryCount * 2);
                 }
+
+                // Image Header/Data
+                reader.Position = (int)table.ImageOffset;
+                ImageHeader = new _ImageHeader(reader);
+
+                ImageFormat? format = ImageFactory.GetFormat(ImageHeader.Format);
+                if(format != null) Format = format;
+                else               return;
+
+                int sizeInBytes = (int)(ImageHeader.Width * ImageHeader.Height * ((double)Format.BitsPerPixel / 8));
+
+                reader.Position = (int)ImageHeader.DataAddress;
+                ImageData = reader.ReadBytes(sizeInBytes);
+
+                Image = Format.ToBitmap(ImageData, ImageHeader.Width, ImageHeader.Height);
             }
         }
 

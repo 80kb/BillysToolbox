@@ -1,5 +1,4 @@
 using BillysToolbox.Editors;
-using kartlib.Img;
 using kartlib.Serial;
 using System.Text;
 
@@ -173,6 +172,22 @@ namespace BillysToolbox
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "TPL Files (*.tpl)|*.tpl";
+
+            if(ofd.ShowDialog() == DialogResult.OK)
+            {
+                byte[] buffer = File.ReadAllBytes(ofd.FileName);
+                TPL tpl = new(buffer, ofd.FileName);
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "JPG Files|*.jpg";
+
+                if(sfd.ShowDialog() == DialogResult.OK)
+                {
+                    tpl.Images[0].Image.Save(sfd.FileName);
+                }
+            }
         }
 
         private void bMMToolStripMenuItem_Click(object sender, EventArgs e)
