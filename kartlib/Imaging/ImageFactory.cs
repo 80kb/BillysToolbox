@@ -1,6 +1,4 @@
 ﻿using kartlib.Imaging.Formats;
-using kartlib.Serial;
-using System.Drawing;
 
 namespace kartlib.Imaging
 {
@@ -18,6 +16,12 @@ namespace kartlib.Imaging
                     return new IA4();
                 case ImageFormatEnum.IA8:
                     return new IA8();
+                case ImageFormatEnum.RGB565:
+                    return new RGB565();
+                case ImageFormatEnum.RGB5A3:
+                    return new RGB5A3();
+                case ImageFormatEnum.RGBA8:
+                    return new RGBA8();
                 default:
                     return null;
             }
