@@ -1,4 +1,5 @@
 using BillysToolbox.Editors;
+using BillysToolbox.Tools.ImageScaler;
 using kartlib.Serial;
 using System.Text;
 
@@ -172,22 +173,6 @@ namespace BillysToolbox
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "TPL Files (*.tpl)|*.tpl";
-
-            if(ofd.ShowDialog() == DialogResult.OK)
-            {
-                byte[] buffer = File.ReadAllBytes(ofd.FileName);
-                TPL tpl = new(buffer, ofd.FileName);
-
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "JPG Files|*.jpg";
-
-                if(sfd.ShowDialog() == DialogResult.OK)
-                {
-                    tpl.Images[0].Image.Save(sfd.FileName);
-                }
-            }
         }
 
         private void bMMToolStripMenuItem_Click(object sender, EventArgs e)
@@ -205,10 +190,20 @@ namespace BillysToolbox
         {
             KMP kmp = new();
             KMPEditorForm? editor = new(kmp);
-            if(editor != null)
+            if (editor != null)
             {
                 editor.MdiParent = this;
                 editor.Show();
+            }
+        }
+
+        private void nImageScalerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ImageScalerForm? imageScalerForm = new ImageScalerForm();
+            if (imageScalerForm != null)
+            {
+                imageScalerForm.MdiParent = this;
+                imageScalerForm.Show();
             }
         }
     }

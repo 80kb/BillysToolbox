@@ -47,12 +47,12 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("JetBrainsMono NF", 23.9999962F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 23.9999962F, FontStyle.Bold);
             label1.Location = new Point(72, 17);
             label1.Name = "label1";
-            label1.Size = new Size(304, 43);
+            label1.Size = new Size(229, 37);
             label1.TabIndex = 1;
-            label1.Text = "Billy's Toolbox";
+            label1.Text = "MKW Toolbox";
             // 
             // richTextBox1
             // 
@@ -61,7 +61,7 @@
             richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(363, 65);
             richTextBox1.TabIndex = 2;
-            richTextBox1.Text = "Billy's Toolbox is a program created by BillyNoodles. Inspired by Wexos's Toolbox, it uses MDI windows to display its editors.\n\nThanks to Laython, for nothing";
+            richTextBox1.Text = "MKW Toolbox is a program created by BillyNoodles. Inspired by Wexos's Toolbox, it uses MDI windows to display its editors.\n\nThanks to Laython, for nothing";
             // 
             // AboutForm
             // 
